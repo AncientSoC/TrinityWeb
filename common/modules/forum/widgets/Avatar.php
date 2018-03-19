@@ -48,8 +48,8 @@ class Avatar extends Widget
             ]);
             $name = $this->author->podiumTag;
             $meta = $this->author->findGeneralAccount();
-            $character_data = $meta->findUserCharacter();
             if (!empty($meta)) {
+                $character_data = $meta->findUserCharacter();
                 $avatar = $meta->userProfile->getAvatar('/img/default-profile.jpg');
                 if (!empty($avatar)) {
                     $avatar = Html::img($avatar, [
@@ -57,14 +57,14 @@ class Avatar extends Widget
                         'alt'   => Html::encode($this->author->podiumName)
                     ]);
                 }
-            }
-            if(!empty($character_data)) {
-                $character_link = Html::a($character_data->name,[
-                    '/armory/character/index',
-                    'server' => Yii::$app->CharactersDbHelper->getServerNameById($meta->realm_id),
-                    'character' => $character_data->name
-                ]);
-                $character_string .= Html::tag('p',Yii::$app->AppHelper->buildTagRaceImage($character_data->race,$character_data->gender) . Yii::$app->AppHelper->buildTagClassImage($character_data->class) . ' ' . $character_link);
+                if(!empty($character_data)) {
+                    $character_link = Html::a($character_data->name,[
+                        '/armory/character/index',
+                        'server' => Yii::$app->CharactersDbHelper->getServerNameById($meta->realm_id),
+                        'character' => $character_data->name
+                    ]);
+                    $character_string .= Html::tag('p',Yii::$app->AppHelper->buildTagRaceImage($character_data->race,$character_data->gender) . Yii::$app->AppHelper->buildTagClassImage($character_data->class) . ' ' . $character_link);
+                }
             }
         }
         return $avatar . ($this->showName ? Html::tag('p', $name, ['class' => 'avatar-name']) : '') . ($character_string ? $character_string : '');
