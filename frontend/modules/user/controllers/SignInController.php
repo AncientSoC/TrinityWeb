@@ -111,17 +111,19 @@ class SignInController extends \yii\web\Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             $user = $model->signup();
-            if (!$user->hasErrors()) {
-                if ($model->shouldBeActivated()) {
-                    Yii::$app->getSession()->setFlash('success', Yii::t(
-                            'frontend',
-                            'Your account has been successfully created. Check your email for further instructions.'
-                        ));
-                } else {
-                    Yii::$app->getUser()->login($user);
+            if($user !== null) {
+                if (!$user->hasErrors()) {
+                    if ($model->shouldBeActivated()) {
+                        Yii::$app->getSession()->setFlash('success', Yii::t(
+                                'frontend',
+                                'Your account has been successfully created. Check your email for further instructions.'
+                            ));
+                    } else {
+                        Yii::$app->getUser()->login($user);
+                    }
+                    Yii::$app->CharactersDbHelper->setDefault();
+                    return $this->goHome();
                 }
-                Yii::$app->CharactersDbHelper->setDefault();
-                return $this->goHome();
             }
         }
 
