@@ -66,8 +66,7 @@ Required PHP extensions:
 3. Run in command line
 ```
 php console/yii app/setup
-npm install
-npm run build
+php console/yii app/sync-accounts
 ```
 - Adjust settings in `common/config/base_characters.php` file
 
