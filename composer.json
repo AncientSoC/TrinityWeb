@@ -64,7 +64,7 @@
     "himiklab/yii2-recaptcha-widget": "^1.0",
     "mdmsoft/yii2-admin": "~2.0",
     "unclead/yii2-multiple-input": "~2.0",
-    "guzzlehttp/guzzle": "~6",
+    "kartik-v/yii2-widget-sidenav": "*",
     "insolita/yii2-migration-generator": "~2.3"
   },
   "require-dev": {
