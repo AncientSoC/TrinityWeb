@@ -1,5 +1,5 @@
 {
-  "name": "Qblolz/TrinityWeb",
+  "name": "qblolz/trinity-web",
   "description": "Yii2 Starter Kit Application Template for TrinityCore -> web app",
   "keywords": [
     "yii2",
@@ -65,8 +65,7 @@
     "mdmsoft/yii2-admin": "~2.0",
     "unclead/yii2-multiple-input": "~2.0",
     "guzzlehttp/guzzle": "~6",
-    "insolita/yii2-migration-generator": "~2.3",
-    "kartik-v/yii2-widget-sidenav": "*"
+    "insolita/yii2-migration-generator": "~2.3"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
