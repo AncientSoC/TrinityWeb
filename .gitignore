@@ -1,0 +1,49 @@
+# Env
+/.env
+
+# Composer
+/vendor
+composer.phar
+
+# JS
+node_modules
+spa/npm-debug.log
+spa/yarn-error.log
+
+# IDE
+.idea
+nbproject
+.buildpath
+.project
+.settings
+
+# list of configs
+common/config/dbs/*
+common/config/mailer/*
+common/config/components/*
+common/config/freeKassa/*
+common/config/console.php
+
+# dumps
+console/dumps
+console/dumps/*
+
+# web platform source
+frontend/web/admin
+frontend/web/storage
+
+# windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
+
+# phpunit
+phpunit.phar
+/phpunit.xml
+
+# Vagrant
+/.vagrant
+
+# Tests
+tests/codeception/*/_support/_generated/*

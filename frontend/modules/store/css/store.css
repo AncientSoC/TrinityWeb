@@ -1,0 +1,19 @@
+#store-container > #right-side > div.flat {padding: 10px;}
+#store-container > #left-side > .store-category-list {
+    border-color: #1e2026;
+}
+#store-container #store-list .store-item {
+    margin-top: 5px;
+    min-height: 240px;
+}
+#store-container #store-list .store-item .store-item-icon {
+    width: 22px;
+}
+#store-container #store-list .store-item .store-item-icon,
+#store-container #store-list .store-item .store-item-name,
+#store-container #store-list .store-item .store-item-cost {
+    padding: 10px 0px;
+}
+#store-container #store-list #basket #basket-block {
+    margin-bottom: 5px;
+}

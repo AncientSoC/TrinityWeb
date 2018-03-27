@@ -1,0 +1,54 @@
+#amory_character_switch {
+    border-bottom-width: 0px;
+}
+#amory_character_switch .tab-content>.tab-pane {
+    padding-top: 10px;
+    min-height: 130px;
+}
+#amory_character_switch li {
+    display: none;
+    float: none;
+    width: 120px;
+}
+#amory_character_switch li.previous-tab,
+#amory_character_switch li.next-tab {
+    display: inline-block;
+    width: 40px;
+}
+#amory_character_switch li.active {
+    display: inline-block;
+}
+#amory_character_switch li a {
+    padding: 5px 10px;
+    background-color: inherit;
+    border-width: 0px;
+}
+#armory-form .character_armory_find_result {
+    padding: 5px 15px;
+}
+#armory-form .row:not(:first-child):not(:nth-child(2)):not(:last-child) {
+    margin-top: 15px;
+}
+#character_container .armory__character_item {
+    text-align: center;
+}
+#armory_character_talents .talents_tab {
+    margin-bottom: 10px;
+}
+#armory_character_talents .talents_tab .talent_tab_header {
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+#armory_character_talents .talents_tab .talents_counter {
+    padding: 3px 0px;
+}
+@media (min-width: 990px) {
+    #armory_character_talents .talents_tab hr {
+        display: none;
+    }
+}
+@media (max-width: 989px) {
+    #armory_character_talents .talents_tab:first-child {
+        margin-top: 30px;
+    }
+}

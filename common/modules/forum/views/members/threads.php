@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Podium Module
+ * Yii 2 Forum Module
+ * @author Paweł Bizley Brzozowski <pawel@positive.codes>
+ * @since 0.1
+ */
+
+use yii\helpers\Url;
+
+$this->title = Yii::t('view', 'Threads started by {name}', ['name' => $user->podiumName]);
+Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('view', 'Members List'), 'url' => ['members/index']];
+Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('view', 'Member View'), 'url' => ['members/view', 'id' => $user->id, 'slug' => $user->podiumSlug]];
+Yii::$app->params['breadcrumbs'][] = $this->title;
+
+?>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="<?= Url::to(['members/index']) ?>"><span class="glyphicon glyphicon-user"></span> <?= Yii::t('view', 'Members List') ?></a></li>
+    <li role="presentation"><a href="<?= Url::to(['members/mods']) ?>"><span class="glyphicon glyphicon-scissors"></span> <?= Yii::t('view', 'Moderation Team') ?></a></li>
+    <li role="presentation"><a href="<?= Url::to(['members/view', 'id' => $user->id, 'slug' => $user->podiumSlug]) ?>"><span class="glyphicon glyphicon-eye-open"></span> <?= Yii::t('view', 'Member View') ?></a></li>
+    <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> <?= Yii::t('view', 'Threads started by {name}', ['name' => $user->podiumName]) ?></a></li>
+</ul>
+<br>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel-group" role="tablist">
+            <?= $this->render('/elements/members/_members_threads', ['user' => $user]) ?>
+        </div>
+    </div>
+</div>

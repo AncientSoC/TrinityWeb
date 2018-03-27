@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * Podium Module
+ * Yii 2 Forum Module
+ * @author Paweł Bizley Brzozowski <pawel@positive.codes>
+ * @since 0.1
+ */
+
+use yii\helpers\Html;
+
+if (!isset($author)) {
+    $author = '';
+}
+if (!isset($model)) {
+    $type    = 'posts';
+    $display = 'topics';
+}
+else {
+    $type    = $model->type;
+    $display = $model->display;
+}
+?>
+<?php if (!empty($dataProvider)): ?>
+<?php
+$typeName = $type == 'topics' ? Yii::t('view', 'threads') : Yii::t('view', 'posts');
+if (!empty($query) && !empty($author)) {
+    $this->title = Yii::t('view', 'Search for {type} with "{query}" by "{author}"', ['query' => Html::encode($query), 'author' => Html::encode($author), 'type' => $typeName]);
+}
+elseif (!empty($query) && empty($author)) {
+    $this->title = Yii::t('view', 'Search for {type} with "{query}"', ['query' => Html::encode($query), 'type' => $typeName]);
+}
+elseif (empty($query) && !empty($author)) {
+    $this->title = Yii::t('view', 'Search for {type} by "{author}"', ['author' => Html::encode($author), 'type' => $typeName]);
+}
+else {
+    $this->title = Yii::t('view', 'Search for {type}', ['type' => $typeName]);
+}
+Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('view', 'Main Forum'), 'url' => ['forum/index']];
+Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('view', 'Search Forum'), 'url' => ['forum/search']];
+Yii::$app->params['breadcrumbs'][] = $this->title;
+?>
+<div class="row">
+    <div class="col-sm-12">
+<?php switch ($display): ?>
+<?php case 'posts': ?>
+        <div class="panel-group" role="tablist">
+            <?= $this->render('/elements/search/_forum_search_posts', ['dataProvider' => $dataProvider, 'query' => $query, 'author' => $author, 'type' => $type]) ?>
+        </div>
+<?php break; default: ?>
+        <div class="panel-group" role="tablist">
+            <?= $this->render('/elements/search/_forum_search_topics', ['dataProvider' => $dataProvider, 'query' => $query, 'author' => $author, 'type' => $type]) ?>
+        </div>
+<?php endswitch; ?>
+    </div>
+</div>
+<?php else: ?>
+<?php
+$this->title = Yii::t('view', 'Search Forum');
+Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('view', 'Main Forum'), 'url' => ['forum/index']];
+Yii::$app->params['breadcrumbs'][] = $this->title;
+?>
+<div>
+    <?= $this->render('/elements/search/_search', ['model' => $model, 'list' => $list]) ?>
+    <div class="clearfix"></div>
+</div>
+<?php endif;
