@@ -30,6 +30,15 @@ class DatabaseForm extends Model
         $this->login = 'root';
     }
     
+    public function scenarios() {
+        return array_merge(
+            parent::scenarios(),
+            [
+                'armory' => [['host','port','database','login','password','table_prefix']]
+            ]
+        );
+    }
+    
     public function rules()
     {
         return [

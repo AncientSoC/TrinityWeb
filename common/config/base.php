@@ -1,12 +1,14 @@
 <?php
 $config = [
-    'name' => 'Yii2 Starter Kit',
     'vendorPath' => __DIR__ . '/../../vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'ru-RU',
     'language' => 'ru-RU',
     'bootstrap' => ['log', 'translatemanager'],
     'modules' => [
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+        ],
         'translatemanager' => [
             'class' => 'common\modules\i18n\Module',
             'root' => ['@frontend','@backend','@common','@console'],               // The root directory of the project scan.
@@ -130,7 +132,24 @@ $config = [
             'path' => '@common/runtime/queue',
         ],
     ],
-    'params' => [],
+    'params' => [
+        'mdm.admin.configs' => [
+            'advanced' => [
+                'app-backend' => [
+                    '@common/config/base.php',
+                    '@common/config/web.php',
+                    '@backend/config/base.php',
+                    '@backend/config/web.php',
+                ],
+                'app-frontend' => [
+                    '@common/config/base.php',
+                    '@common/config/web.php',
+                    '@frontend/config/base.php',
+                    '@frontend/config/web.php',
+                ],
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

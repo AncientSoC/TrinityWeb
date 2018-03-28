@@ -31,8 +31,7 @@ class FrontendAsset extends AssetBundle
     public $css = [
         'css/fontawesome-all.min.css',
         'css/font-play.css',
-        'css/app.css',
-        'css/helper.css',
+        'css/app.css'
     ];
 
     /**

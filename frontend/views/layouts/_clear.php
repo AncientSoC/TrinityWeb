@@ -3,8 +3,9 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+\common\assets\HelperAssets::register($this);
 \frontend\assets\FrontendAsset::register($this);
-common\assets\GlyphIcons::register($this);
+\common\assets\GlyphIcons::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

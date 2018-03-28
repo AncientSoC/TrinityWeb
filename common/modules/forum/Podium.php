@@ -2,6 +2,7 @@
 
 namespace common\modules\forum;
 
+use common\modules\installer\helpers\enums\Configuration;
 use common\modules\forum\log\DbTarget;
 use common\modules\forum\maintenance\Maintenance;
 use common\modules\forum\models\Activity;
@@ -214,6 +215,7 @@ class Podium extends Module implements BootstrapInterface
     {
         if ($app instanceof WebApplication) {
             $this->addUrlManagerRules($app);
+            $this->setPodiumLogTarget($app);
         } elseif ($app instanceof ConsoleApplication) {
             $this->controllerNamespace = 'common\modules\forum\console';
         }
@@ -417,6 +419,9 @@ class Podium extends Module implements BootstrapInterface
     }
     
     public function beforeAction($action) {
+        if(Yii::$app->keyStorage->get(Configuration::MODULE_FORUM) !== Configuration::ENABLED) {
+            return Yii::$app->response->redirect(Yii::$app->homeUrl);
+        }
         return parent::beforeAction($action);
     }
     

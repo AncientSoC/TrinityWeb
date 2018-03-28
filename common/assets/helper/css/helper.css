@@ -46,6 +46,7 @@
 .alert {
     border-radius: 0px;
     color:#36BBA6;
+    margin-top: 15px;
     border-color: rgba(136, 136, 136, 0.45);
 }
 .alert-success {background-color: rgba(83, 222, 217, 0.25);}

@@ -5,7 +5,7 @@ namespace frontend\modules\armory\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-
+use common\modules\installer\helpers\enums\Configuration;
 use common\models\chars\Characters;
 
 /**
@@ -63,7 +63,7 @@ class SearchForm extends Model
                     mb_strtolower($this->query)
                 ])->orderBy(['guid' => SORT_DESC])->with(['relationGuild.relationGuild'])->asArray(),
 			'pagination' => [
-				'pageSize' => SearchForm::PAGE_SIZE,
+				'pageSize' => SearchForm::getPageSize(),
 			],
 		]);
         $data = Yii::$app->cache->get(Yii::$app->request->url);
@@ -80,5 +80,9 @@ class SearchForm extends Model
     }
     
     public function formName() {return '';}
+    
+    public static function getPageSize() {
+        return Yii::$app->keyStorage->get(Configuration::MODULE_ARMORY_PER_PAGE);
+    }
     
 }

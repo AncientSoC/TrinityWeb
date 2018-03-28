@@ -22,46 +22,47 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             <div class="collapse navbar-collapse" id="header-menu">
                 <?php echo Nav::widget([
                     'options' => ['class' => 'navbar-nav mr-auto'],
+                    'activateParents' => true,
                     'items' => [
                         [
                             'label' => Yii::t('frontend', 'Home'),
                             'url' => ['/site/index'],
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('frontend', 'Home'),
-                            ],
                         ],
                         [
                             'label' => Yii::t('frontend', 'About'),
                             'url' => ['/page/view', 'slug'=>'about'],
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('frontend', 'About'),
-                            ],
                         ],
                         [
-                            'label' => Yii::t('armory', 'Армори'),
-                            'url' => ['/armory/main/index'],
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('armory', 'Армори'),
-                            ],
+                            'label' => Yii::t('frontend', 'Community'),
+                            'items'=> [
+                                [
+                                    'label' => Yii::t('view', 'Forum'),
+                                    'url' => ['/forum/forum/index'],
+                                ],
+                                [
+                                    'label' => Yii::t('armory', 'Армори'),
+                                    'url' => ['/armory/main/index'],
+                                ],
+                                [
+                                    'label' => Yii::t('ladder', 'Ладдер'),
+                                    'url' => ['/ladder/main/index'],
+                                ],
+                            ]
                         ],
                         [
-                            'label' => Yii::t('ladder', 'Ладдер'),
-                            'url' => ['/ladder/main/index'],
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('ladder', 'Ладдер'),
-                            ],
-                        ],
-                        [
-                            'label' => Yii::t('view', 'Forum'),
-                            'url' => ['/forum/forum/index'],
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('view', 'Forum'),
-                            ],
+                            'label' => Yii::t('frontend', 'More'),
+                            'items' => [
+                                [
+                                    'label' => Yii::t('view', 'Bugtracker'),
+                                    'url' => ['/tracker/project/index'],
+                                ],
+                            ]
                         ],
                     ]
                 ]); ?>
                 <?php echo Nav::widget([
                     'options' => ['class' => 'navbar-nav ml-auto'],
+                    'activateParents' => true,
                     'items' => [
                         
                         //not auth start
@@ -70,17 +71,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                             'label' => Yii::t('frontend', 'Login'),
                             'url' => ['/panel/sign-in/login'],
                             'visible' => Yii::$app->user->isGuest,
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('frontend', 'Login'),
-                            ],
                         ],
                         [
                             'label' => Yii::t('frontend', 'Signup'),
                             'url' => ['/panel/sign-in/signup'],
                             'visible' => Yii::$app->user->isGuest,
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('frontend', 'Signup'),
-                            ],
                         ],
                         
                         //not auth end
@@ -89,10 +84,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         [
                             'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
                             'visible' => !Yii::$app->user->isGuest,
-                            'linkOptions' => [
-                                'class' => 'nav-link dropdown-toggle',
-                            ],
-                            'items'=>[
+                            'items'=> [
                                 [
                                     'label' => Yii::t('frontend', 'Личный кабинет'),
                                     'url' => ['/panel/main/index']
@@ -120,14 +112,12 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         //authed end
                         [
                             'label'=>Yii::t('frontend', 'Language'),
-                            'linkOptions' => [
-                                'data-hover' => Yii::t('frontend', 'Language'),
-                            ],
+                            'active' => false,
                             'items' => array_map(function ($lang) {
                                 return [
                                     'label' => $lang['name_ascii'],
                                     'url' => ['/site/set-locale', 'locale' => $lang['language_id']],
-                                    'active' => Yii::$app->language === $lang['language_id']
+                                    'active' => false
                                 ];
                             }, Yii::$app->AppHelper::getLangs())
                         ]

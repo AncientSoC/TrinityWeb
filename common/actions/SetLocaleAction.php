@@ -66,7 +66,11 @@ class SetLocaleAction extends Action
      */
     public function run($locale)
     {
-        if (!is_array($this->locales) || !in_array($locale, $this->locales, true)) {
+        $exist = false;
+        foreach($this->locales as $_locale) {
+            if($_locale['language_id'] == $locale) $exist = true;
+        }
+        if (!$exist) {
             throw new InvalidArgumentException('Unacceptable locale');
         }
         $cookie = new Cookie([

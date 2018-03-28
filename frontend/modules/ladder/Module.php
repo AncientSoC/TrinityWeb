@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\base\BootstrapInterface;
 use yii\web\GroupUrlRule;
+use common\modules\installer\helpers\enums\Configuration;
 
 class Module extends \yii\base\Module implements BootstrapInterface
 {
@@ -29,6 +30,9 @@ class Module extends \yii\base\Module implements BootstrapInterface
     public function beforeAction($action) {
         parent::beforeAction($action);
         Yii::$app->params['breadcrumbs'][] = ['label' => Yii::t('ladder','Ладдер'),'url' => ['/ladder']];
+        if(Yii::$app->keyStorage->get(Configuration::MODULE_LADDER) !== Configuration::ENABLED) {
+            return Yii::$app->response->redirect(Yii::$app->homeUrl);
+        }
         return $this;
     }
     

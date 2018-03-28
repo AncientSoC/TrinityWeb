@@ -30,6 +30,7 @@ class Configuration
     
     // Modules
     const MODULE_FORUM     = 'module.forum';
+    const MODULE_DB_ARMORY    = 'module.db.armory';
     const MODULE_ARMORY    = 'module.armory';
     const MODULE_ARMORY_PER_PAGE    = 'module.armory.per_page';
     const MODULE_LADDER    = 'module.ladder';

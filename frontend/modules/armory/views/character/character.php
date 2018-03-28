@@ -1,27 +1,28 @@
 <?php
 use yii\helpers\Url;
 ?>
-<div id="armory_character">
-    <div class="col-xs-12 col-md-7">
-        <div class="row">
-            <div class="col-xs-12 col-sm-11">
-                <h4 id="armory_character_name" class="pull-left"><?=$data['name']?></h4>
-                <span class="pull-left">
+<div id="armory_character" class="row justify-content-center">
+    <div class="col-12 col-md-7">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-auto align-self-center">
+                <h4 id="armory_character_name"><?=$data['name']?></h4>
+            </div>
+            <div class="col-auto align-self-center">
+                <span>
                     <div id="armory_character_title"><?=$data['title']?></div>
                     <div id="armory_character_guild"><?=$data['guild']?></div>
                 </span>
-                <div class="clearfix"></div>
             </div>
         </div>
-        <div>
+        <div class="text-center">
             <small>
                 <?=Yii::t('armory','{level} уровень',[
                     'level' => $data['level'],
                 ])?> <?=$data['race']?> <span class="cl-<?=$data['class_index']?>"><?=$data['class']?></span>
             </small>
         </div>
-        <div class="row">
-            <div class="col-xs-3 col-sm-1 col-md-2 col-lg-2">
+        <div class="row justify-content-center">
+            <div class="col-3 col-sm-2 col-md-2 col-lg-2">
                 <div class="armory__character_item noselect character_item_head">
                     <?php
                     $item_info = $data['items'][Yii::$app->AppHelper::$INV_HEAD];
@@ -87,16 +88,16 @@ use yii\helpers\Url;
                     </a>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-7 col-lg-7">
+            <div class="col-6 col-sm-6 col-md-7 col-lg-7">
                 <div id="armory_character_stat_data">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6">
+                        <div class="col-12 col-sm-6">
                             <?=Yii::t('armory','Здоровье:')?>
                             <span class="character_health">
                                 <?=number_format($data['stats']['maxhealth'], 0, '.', '.')?>
                             </span>
                         </div>
-                        <div class="col-xs-12 col-sm-6">
+                        <div class="col-12 col-sm-6">
                             <?=Yii::$app->AppHelper->getCharacterPowerByClass($data['class_index'])?>: 
                             <span class="character_power">
                                 {value}
@@ -142,40 +143,40 @@ use yii\helpers\Url;
                     </div>
                     <hr/>
                     <div id="amory_character_switch">
-                        <ul id="armory_character_menu" class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#melee" data-toggle="tab">
+                        <ul id="armory_character_menu" class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a href="#melee" class="nav-link active" role="tab" data-toggle="tab">
                                     <?=Yii::t('armory','Ближний бой')?>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#range" data-toggle="tab">
+                            <li class="nav-item">
+                                <a href="#range" class="nav-link" role="tab" data-toggle="tab">
                                     <?=Yii::t('armory','Дальний бой')?>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#magic" data-toggle="tab">
+                            <li class="nav-item">
+                                <a href="#magic" class="nav-link" role="tab" data-toggle="tab">
                                     <?=Yii::t('armory','Магия')?>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#defence" data-toggle="tab">
+                            <li class="nav-item">
+                                <a href="#defence" class="nav-link" role="tab" data-toggle="tab">
                                     <?=Yii::t('armory','Защита')?>
                                 </a>
                             </li>
-                            <li class="previous-tab">
+                            <li class="nav-item previous-tab">
                                 <a href="">
                                     <i class="fa rf-white fa-arrow-left"></i>
                                 </a>
                             </li>
-                            <li class="next-tab">
+                            <li class="nav-item next-tab">
                                 <a href="">
                                     <i class="fa rf-white fa-arrow-right"></i>
                                 </a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="melee">
+                            <div class="tab-pane show active" id="melee">
                                 <div class="character_stat">
                                     <?=Yii::t('armory','Урон: {number}', [
                                         'number' => $data['stats']['melee_damage_from'] . ' - ' . $data['stats']['melee_damage_to'],
@@ -297,7 +298,7 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </div>
-            <div class="col-xs-3 col-sm-1 col-md-2 col-lg-2">
+            <div class="col-3 col-sm-2 col-md-2 col-lg-2">
                 <div class="armory__character_item noselect character_item_hands">
                     <?php
                     $item_info = $data['items'][Yii::$app->AppHelper::$INV_GLOVES];
@@ -365,7 +366,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-5">
+    <div class="col-12 col-md-5">
         <div id="professions_info">
             <?php
             foreach($data['professions'] as $prof) {

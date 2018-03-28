@@ -17,11 +17,4 @@ $(document).ready(function(){
         interval: false,
         pause: true
     }).on('slid.bs.carousel', function () {});var barInterval = setInterval(progressBarCarousel, 5);
-    crsl.hover(
-        function(){
-            clearInterval(barInterval);
-        },
-        function(){
-            barInterval = setInterval(progressBarCarousel, 5);
-    });
 });

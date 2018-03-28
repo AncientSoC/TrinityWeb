@@ -40,6 +40,9 @@ class InstallerModule extends BaseModule implements BootstrapInterface
      */
     public function beforeAction($action)
     {
+        if(self::isDBInstalled())
+            Yii::$app->session->setFlash('error',Yii::t('installer','Операция невозможна - приложение уже установлено!'));
+            if(self::isConfigured()) return Yii::$app->response->redirect(Yii::$app->homeUrl);
         return parent::beforeAction($action);
     }
     
@@ -66,7 +69,7 @@ class InstallerModule extends BaseModule implements BootstrapInterface
     public static function isDBInstalled() {
         if(Yii::$app->has('db')) {
             try {
-                if(Yii::$app->keyStorage->get(Enum::DB_WEB_STATUS) != '') return true;
+                if(Yii::$app->keyStorage->get(Enum::DB_WEB_STATUS) === Enum::INSTALLED) return true;
             } catch (Exception $ex) {
                 return false;
             }
@@ -79,7 +82,7 @@ class InstallerModule extends BaseModule implements BootstrapInterface
      */
     public static function isConfigured()
     {
-        if (Yii::$app->keyStorage->get(Enum::APP_STATUS) != '') {
+        if (Yii::$app->keyStorage->get(Enum::APP_STATUS) === Enum::INSTALLED) {
             return true;
         }
         return false;

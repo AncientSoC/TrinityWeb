@@ -10,12 +10,12 @@ use common\widgets\StatusServers\StatusServersWidget;
 $this->beginContent('@frontend/views/layouts/base.php')
 ?>
     <div id="carousel-container" class="push-header">
-        <?php /*echo \common\widgets\DbCarousel::widget([
+        <?php echo \common\widgets\DbCarousel::widget([
             'key'=>'index',
             'options' => [
                 'class' => 'slide carousel-with-indicator',
             ],
-        ])*/?>
+        ])?>
     </div>
     <div class="container">
         
@@ -30,8 +30,8 @@ $this->beginContent('@frontend/views/layouts/base.php')
                 <?php echo $content ?>
             </div>
             <div class="col-md-4" id="right-side">
-                <?php /*echo StatusServersWidget::widget()*/ ?>
-                <?php /*echo common\modules\forum\widgets\LatestPosts::widget()*/ ?>
+                <?php echo StatusServersWidget::widget() ?>
+                <?php echo common\modules\forum\widgets\LatestPosts::widget() ?>
             </div>
         </div>
     </div>

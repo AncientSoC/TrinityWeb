@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zein
- * Date: 7/3/14
- * Time: 3:24 PM
- */
 
 namespace common\assets;
 

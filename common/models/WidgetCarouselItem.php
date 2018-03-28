@@ -122,4 +122,13 @@ class WidgetCarouselItem extends ActiveRecord
     {
         return $this->hasOne(WidgetCarousel::class, ['id' => 'carousel_id']);
     }
+    
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return rtrim($this->base_url, '/') . '/' . ltrim($this->path, '/');
+    }
+    
 }

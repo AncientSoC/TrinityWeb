@@ -1,11 +1,8 @@
-<?php
-use Yii;
-?>
 <div class="row">
     <?php
     foreach($group as $tab_key => $tab) {
     ?>
-    <div class="col-xs-12 col-md-4 talents_tab">
+    <div class="col-12 col-md-4 talents_tab">
         <div class="talent_tab_header">
             <?=$tab['name']?> - <?=$tab['counter']?>
         </div>
@@ -13,9 +10,9 @@ use Yii;
         foreach($tab['tree'] as $row) {
             ?>
             <div class="row">
-                <div class="col-xs-push-1 col-xs-10">
+                <div class="offset-1 col-10">
                     <div class="row">
-                        <div class="col-xs-3 text-center">
+                        <div class="col-3 text-center">
                             <?php
                             //col-1
                             if(isset($row[0])) {
@@ -30,7 +27,7 @@ use Yii;
                             }
                             ?>
                         </div>
-                        <div class="col-xs-3 text-center">
+                        <div class="col-3 text-center">
                             <?php
                             //col-2
                             if(isset($row[1])) {
@@ -45,7 +42,7 @@ use Yii;
                             }
                             ?>
                         </div>
-                        <div class="col-xs-3 text-center">
+                        <div class="col-3 text-center">
                             <?php
                             //col-3
                             if(isset($row[2])) {
@@ -60,7 +57,7 @@ use Yii;
                             }
                             ?>
                         </div>
-                        <div class="col-xs-3 text-center">
+                        <div class="col-3 text-center">
                             <?php
                             //col-4
                             if(isset($row[3])) {

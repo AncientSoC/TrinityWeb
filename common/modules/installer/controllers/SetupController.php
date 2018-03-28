@@ -232,7 +232,7 @@ class SetupController extends Controller
                 if(!$errorMsg) {
                     Configuration::setConfig(Yii::getAlias('@common/config/dbs/chars.php'), $config);
                     Yii::$app->keyStorage->set(Enum::CHARS_STATUS, Enum::INSTALLED);
-                    return $this->redirect(['config/admin']);
+                    return $this->redirect(['armory-database']);
                 }
             }
         }
@@ -244,6 +244,40 @@ class SetupController extends Controller
         ]);
     }
 
+    /**
+     * (Step 6)
+     */
+    public function actionArmoryDatabase()
+    {
+        $errorMsg = '';
+        $result_data = [
+            'config' => null,
+            'error' => null
+        ];
+        $success = false;
+        $model = new DatabaseForm(['_name' => 'Armory']);
+        $model->setScenario('armory');
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+            if ($model->validate()) {
+                $result_data = $this->buildConfigurationDatabase($model, 'armory_db');
+                if($result_data['error'] == null) {
+                    Configuration::setConfig(Yii::getAlias('@common/config/dbs/armory.php'), $result_data['config']);
+                    Yii::$app->keyStorage->set(Enum::MODULE_DB_ARMORY, Enum::INSTALLED);
+                    return $this->redirect(['config/admin']);
+                }
+            }
+        }
+        return $this->render('_database_form', [
+            'model' => $model,
+            'success' => $success,
+            'errorMsg' => $result_data['error']
+        ]);
+    }
+    
     protected function buildConfigurationDatabase($model, $component_key) {
         $success = false;
         $errorMsg = null;

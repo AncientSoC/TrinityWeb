@@ -4,11 +4,12 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
-        // Pages
+        
+        ['pattern' => '/', 'route' => 'site/index'],
+        ['pattern' => '/category/<category_id>', 'route' => 'site/index'],
+        
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],
 
-        // Articles
-        ['pattern' => 'article/index', 'route' => 'article/index'],
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
         ['pattern' => 'article/<slug>', 'route' => 'article/view'],
 

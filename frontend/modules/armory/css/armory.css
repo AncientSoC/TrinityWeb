@@ -5,17 +5,17 @@
     padding-top: 10px;
     min-height: 130px;
 }
-#amory_character_switch li {
+#amory_character_switch li a {
     display: none;
     float: none;
     width: 120px;
 }
-#amory_character_switch li.previous-tab,
-#amory_character_switch li.next-tab {
+#amory_character_switch li.previous-tab a,
+#amory_character_switch li.next-tab a{
     display: inline-block;
     width: 40px;
 }
-#amory_character_switch li.active {
+#amory_character_switch li a.active {
     display: inline-block;
 }
 #amory_character_switch li a {
@@ -26,8 +26,8 @@
 #armory-form .character_armory_find_result {
     padding: 5px 15px;
 }
-#armory-form .row:not(:first-child):not(:nth-child(2)):not(:last-child) {
-    margin-top: 15px;
+#armory-form .row:not(:first-child):not(:nth-child(2)) {
+    margin-top: 25px;
 }
 #character_container .armory__character_item {
     text-align: center;

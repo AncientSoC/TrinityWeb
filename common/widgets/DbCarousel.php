@@ -95,4 +95,27 @@ class DbCarousel extends Carousel
         }
         return Html::tag('div', $content, $this->options);
     }
+    
+    /**
+     * Renders previous and next control buttons.
+     * @throws InvalidConfigException if [[controls]] is invalid.
+     */
+    public function renderControls()
+    {
+        if (isset($this->controls[0], $this->controls[1])) {
+            return Html::a($this->controls[0], '#' . $this->options['id'], [
+                'class' => 'carousel-control-prev',
+                'data-slide' => 'prev',
+            ]) . "\n"
+            . Html::a($this->controls[1], '#' . $this->options['id'], [
+                'class' => 'carousel-control-next',
+                'data-slide' => 'next',
+            ]);
+        } elseif ($this->controls === false) {
+            return '';
+        } else {
+            throw new InvalidConfigException('The "controls" property must be either false or an array of two elements.');
+        }
+    }
+    
 }

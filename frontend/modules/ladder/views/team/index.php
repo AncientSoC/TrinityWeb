@@ -1,58 +1,65 @@
 <?php
-use Yii;
 use yii\helpers\Html;
+use common\modules\installer\helpers\enums\Configuration;
 ?>
 <div id="ladder-team-container">
-    <div class="flat">
-        <div class="ladder-team-header">
-            <div class="col-xs-4 col-sm-3 col-md-2">
-                <?=Yii::t('ladder','Участник')?>
-            </div>
-            <div class="col-xs-3 hidden-xs col-sm-3 hidden-sm col-md-2 text-center-xs">
-                <?=Yii::t('ladder','Расса/Класс')?>
-            </div>
-            <div class="col-xs-2 text-center-xs">
-                <?=Yii::t('ladder','Побед')?>
-            </div>
-            <div class="col-xs-3 col-sm-2 text-center-xs">
-                <?=Yii::t('ladder','Поражений')?>
-            </div>
-            <div class="col-xs-3 col-sm-2 text-center-xs">
-                <?=Yii::t('ladder','Рейтинг')?>
-            </div>
-            <div class="col-xs-3 hidden-xs col-sm-2 col-md-1 text-center-xs">
-                <?=Yii::t('ladder','ММР')?>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="ladder-team-members">
+    <table class="flat table table-dark">
+        <thead class="ladder-team-header">
+            <tr>
+                <th scope="col">
+                    <?=Yii::t('ladder','Участник')?>
+                </th>
+                <th scope="col" class="d-none d-lg-table-cell">
+                    <?=Yii::t('ladder','Расса/Класс')?>
+                </th>
+                <th scope="col">
+                    <?=Yii::t('ladder','Поб.')?>
+                </th>
+                <th scope="col">
+                    <?=Yii::t('ladder','Пор.')?>
+                </th>
+                <th scope="col">
+                    <?=Yii::t('ladder','Рейтинг')?>
+                </th>
+                <th scope="col" class="d-none d-sm-table-cell">
+                    <?=Yii::t('ladder','ММР')?>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="ladder-team-members">
             <?php
             foreach($data['relationMembers'] as $item) {
             ?>
-            <div class="ladder-team-member">
-                <div class="col-xs-4 col-sm-3 col-md-2">
-                    <?=Html::a($item['relationCharacter']['name'],[
-                        '/armory/character/index',
-                        'server' => Yii::$app->CharactersDbHelper->getServerNameById(Yii::$app->CharactersDbHelper->getServerFromGet()),
-                        'character' => $item['relationCharacter']['name']
-                    ])?>
-                </div>
-                <div class="col-xs-3 hidden-xs col-sm-3 hidden-sm col-md-2 text-center-xs">
+            <tr class="ladder-team-member">
+                <td>
                     <?php
-                    echo Yii::$app->AppHelper->buildTagRaceImage($item['relationCharacter']['race'],$item['relationCharacter']['gender']);
-                    echo Yii::$app->AppHelper->buildTagClassImage($item['relationCharacter']['class']);
+                    if(Yii::$app->keyStorage->get(Configuration::MODULE_ARMORY) ===  Configuration::ENABLED) {
+                        echo Html::a($item['relationCharacter']['name'],[
+                            '/armory/character/index',
+                            'server' => Yii::$app->CharactersDbHelper->getServerNameById(Yii::$app->CharactersDbHelper->getServerFromGet()),
+                            'character' => $item['relationCharacter']['name']
+                        ]);
+                    } else {
+                        echo ("<span>" . $item['relationCharacter']['name'] . "</span>");
+                    }
                     ?>
-                </div>
-                <div class="col-xs-2 text-center-xs">
+                </td>
+                <td class="d-none d-lg-table-cell">
+                    <?php
+                        echo Yii::$app->AppHelper->buildTagRaceImage($item['relationCharacter']['race'],$item['relationCharacter']['gender']);
+                        echo Yii::$app->AppHelper->buildTagClassImage($item['relationCharacter']['class']);
+                    ?>
+                </td>
+                <td>
                     <span><?=$item['seasonWins']?></span>
-                </div>
-                <div class="col-xs-3 col-sm-2 text-center-xs">
+                </td>
+                <td>
                     <span><?=($item['seasonGames'] - $item['seasonWins'])?></span>
-                </div>
-                <div class="col-xs-3 col-sm-2 text-center-xs">
+                </td>
+                <td>
                     <?=$item['personalRating']?>
-                </div>
-                <div class="col-xs-3 hidden-xs col-sm-2 col-md-1 text-center-xs">
+                </td>
+                <td class="d-none d-sm-table-cell">
                     <?php
                     $mmr = 1500;
                     if($item['relationCharacter']) {
@@ -74,12 +81,11 @@ use yii\helpers\Html;
                     }
                     echo $mmr;
                     ?>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+                </td>
+            </tr>
             <?php
             }
             ?>
-        </div>
-    </div>
+        </tbody>
+    </table>
 </div>
