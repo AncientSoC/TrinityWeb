@@ -12,5 +12,6 @@ class HelperAssets extends AssetBundle
     ];
     public $depends = [
         'yii\bootstrap\BootstrapPluginAsset',
+        GlyphIcons::class
     ];
 }

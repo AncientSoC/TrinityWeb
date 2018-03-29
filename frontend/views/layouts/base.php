@@ -4,6 +4,9 @@ use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use yii\bootstrap\Modal;
+
+use frontend\widgets\auth\AuthWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -13,7 +16,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 <div id="wrap">
     <nav id="header-nav" class="navbar navbar-expand-md navbar-dark fixed-top bg-nav-rf-studio">
         <div class="container">
-            <?=Html::a('RF-studio',['/site/index'],[
+            <?=Html::a(Yii::$app->name,['/site/index'],[
                 'class' => 'navbar-brand'
             ])?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-menu" aria-controls="header-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,56 +32,44 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                             'url' => ['/site/index'],
                         ],
                         [
-                            'label' => Yii::t('frontend', 'About'),
-                            'url' => ['/page/view', 'slug'=>'about'],
+                            'label' => Yii::t('ladder', 'Ладдер'),
+                            'url' => ['/ladder/main/index'],
                         ],
                         [
-                            'label' => Yii::t('frontend', 'Community'),
-                            'items'=> [
-                                [
-                                    'label' => Yii::t('view', 'Forum'),
-                                    'url' => ['/forum/forum/index'],
-                                ],
-                                [
-                                    'label' => Yii::t('armory', 'Армори'),
-                                    'url' => ['/armory/main/index'],
-                                ],
-                                [
-                                    'label' => Yii::t('ladder', 'Ладдер'),
-                                    'url' => ['/ladder/main/index'],
-                                ],
-                            ]
+                            'label' => Yii::t('armory', 'Армори'),
+                            'url' => ['/armory/main/index'],
                         ],
                         [
-                            'label' => Yii::t('frontend', 'More'),
-                            'items' => [
-                                [
-                                    'label' => Yii::t('view', 'Bugtracker'),
-                                    'url' => ['/tracker/project/index'],
-                                ],
-                            ]
+                            'label' => Yii::t('view', 'Forum'),
+                            'url' => ['/forum/forum/index'],
                         ],
+                        /*[
+                            'label' => Yii::t('view', 'Bugtracker'),
+                            'url' => ['/tracker/project/index'],
+                        ],*/
                     ]
                 ]); ?>
                 <?php echo Nav::widget([
-                    'options' => ['class' => 'navbar-nav ml-auto'],
+                    'options' => ['class' => 'navbar-nav mx-auto'],
                     'activateParents' => true,
+                    'encodeLabels' => false,
                     'items' => [
-                        
-                        //not auth start
-                        
                         [
                             'label' => Yii::t('frontend', 'Login'),
-                            'url' => ['/panel/sign-in/login'],
+                            'linkOptions' => [
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modal-auth-login'
+                            ],
                             'visible' => Yii::$app->user->isGuest,
                         ],
                         [
                             'label' => Yii::t('frontend', 'Signup'),
-                            'url' => ['/panel/sign-in/signup'],
+                            'linkOptions' => [
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modal-auth-signup'
+                            ],
                             'visible' => Yii::$app->user->isGuest,
                         ],
-                        
-                        //not auth end
                         
                         //authed start
                         [
@@ -127,8 +118,35 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
         </div>
     </nav>
     <?php echo $content ?>
-
 </div>
+<?php
+if(Yii::$app->user->isGuest) {
+    Modal::begin([
+        'id' => 'modal-auth-login',
+        'options' => ['class' => 'fade'],
+        'size' => Modal::SIZE_SMALL . ' modal-dialog-centered',
+        'closeButton' => [
+            'label' => Yii::t('app','Закрыть'),
+            'class' => 'close'
+        ]
+    ]);
+    echo AuthWidget::widget(['action' => AuthWidget::AUTH]);
+    Modal::end();
+    
+    Modal::begin([
+        'id' => 'modal-auth-signup',
+        'options' => ['class' => 'fade'],
+        'size' => Modal::SIZE_DEFAULT . ' modal-dialog-centered',
+        'closeButton' => [
+            'label' => Yii::t('app','Закрыть'),
+            'class' => 'close'
+        ]
+    ]);
+    echo AuthWidget::widget(['action' => AuthWidget::SIGNUP]);
+    Modal::end();
+}
+?>
+
 <footer id="footer">
     <div class="container">
         <p class="float-left rf-studio-aqua">

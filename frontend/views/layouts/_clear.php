@@ -6,6 +6,7 @@ use yii\helpers\Html;
 \common\assets\HelperAssets::register($this);
 \frontend\assets\FrontendAsset::register($this);
 \common\assets\GlyphIcons::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

@@ -79,17 +79,20 @@ class SignInController extends \yii\web\Controller
      */
     public function actionLogin()
     {
+        if(!Yii::$app->request->isPjax) return $this->goHome ();
         $model = new LoginForm();
-        if (Yii::$app->request->isAjax) {
-            $model->load($_POST);
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
+        if($post = Yii::$app->request->post()) {
+            $model->load($post);
+            if($model->validate() && $model->login()) {
+                return $this->goBack();
+            }
+            if(Yii::$app->request->isPjax) {
+                return $this->renderAjax('@frontend/widgets/auth/views/login', [
+                    'model' => $model
+                ]);
+            }
         }
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        return $this->render('login', [
+        return $this->renderAjax('@frontend/widgets/auth/views/login', [
             'model' => $model
         ]);
     }
@@ -108,8 +111,12 @@ class SignInController extends \yii\web\Controller
      */
     public function actionSignup()
     {
+        if(!Yii::$app->request->isPjax) return $this->goHome ();
+        
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
+        
+        if($post = Yii::$app->request->post()) {
+            $model->load($post);
             $user = $model->signup();
             if($user !== null) {
                 if (!$user->hasErrors()) {
@@ -121,13 +128,14 @@ class SignInController extends \yii\web\Controller
                     } else {
                         Yii::$app->getUser()->login($user);
                     }
-                    Yii::$app->CharactersDbHelper->setDefault();
-                    return $this->goHome();
                 }
             }
+            return $this->renderAjax('@frontend/widgets/auth/views/signup', [
+                'model' => $model
+            ]);
         }
-
-        return $this->render('signup', [
+        
+        return $this->renderAjax('@frontend/widgets/auth/views/signup', [
             'model' => $model
         ]);
     }

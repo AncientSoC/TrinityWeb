@@ -26,10 +26,10 @@ $this->beginContent('@frontend/views/layouts/base.php')
         <?= Alert::widget() ?>
         
         <div class="row">
-            <div class="col-md-8" id="left-side">
+            <div class="col-md-8 col-h-full" id="left-side">
                 <?php echo $content ?>
             </div>
-            <div class="col-md-4" id="right-side">
+            <div class="col-md-4 col-h-full" id="right-side">
                 <?php echo StatusServersWidget::widget() ?>
                 <?php echo common\modules\forum\widgets\LatestPosts::widget() ?>
             </div>
