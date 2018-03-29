@@ -30,8 +30,10 @@ $this->beginContent('@frontend/views/layouts/base.php')
                 <?php echo $content ?>
             </div>
             <div class="col-md-4 col-h-full" id="right-side">
-                <?php echo StatusServersWidget::widget() ?>
-                <?php echo common\modules\forum\widgets\LatestPosts::widget() ?>
+                <div class="right-container">
+                    <?php echo StatusServersWidget::widget() ?>
+                    <?php echo common\modules\forum\widgets\LatestPosts::widget() ?>
+                </div>
             </div>
         </div>
     </div>

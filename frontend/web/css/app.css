@@ -257,8 +257,9 @@ input:-webkit-autofill, input:active:-webkit-autofill, input:hover:-webkit-autof
     width: 100%;
 }
 .widget {margin-bottom: 30px;}
-#right-side, #left-side {padding-top: 15px;}
-#right-side {
+#left-side {padding-top: 15px;}
+#right-side > .right-container {
+    padding: 15px;
     background: rgba(32, 35, 40, 0.65);
 }
 #footer {
@@ -353,5 +354,5 @@ input:-webkit-autofill, input:active:-webkit-autofill, input:hover:-webkit-autof
         overflow-y: scroll;
         max-height: 120px;
     }
-    #right-side {margin: 0px 15px 15px;}
+    #right-side {margin: 0px 0px 15px;}
 }
