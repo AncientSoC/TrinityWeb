@@ -311,9 +311,9 @@ input:-webkit-autofill, input:active:-webkit-autofill, input:hover:-webkit-autof
         position: absolute;
         content: "";
         background: #36BBA6;
-        bottom: 5px;
-        height: 2px;
-        width: 2px;
+        bottom: 9px;
+        height: 3px;
+        width: 3px;
         opacity: 0;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
