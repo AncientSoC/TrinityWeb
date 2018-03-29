@@ -89,11 +89,13 @@ a:hover .effect-right {
 .btn.btn-link {color: #36BBA6;}
 .btn.btn-link:hover,.btn.btn-link:active,.btn.btn-link:focus {color: #68C7B8;}
 
-input:-webkit-autofill, input:active:-webkit-autofill, input:hover:-webkit-autofill, input:focus:-webkit-autofill {
+input:-webkit-autofill, input:active:-webkit-autofill, input:hover:-webkit-autofill, input:focus:-webkit-autofill,
+textarea:-webkit-autofill, textarea:active:-webkit-autofill, textarea:hover:-webkit-autofill, textarea:focus:-webkit-autofill,
+select:-webkit-autofill, select:hover:-webkit-autofill, select:active:-webkit-autofill, select:focus:-webkit-autofill {
     background-color: #262a30 !important;
     -webkit-text-fill-color: #d8d4d4 !important;
     -webkit-text-stroke-color: #d8d4d4 !important;
-    -webkit-box-shadow: 0 0 0px 1000px #262a30 inset;
+    -webkit-box-shadow: inset 0 0 0px 9999px #262a30 !important;
 }
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
