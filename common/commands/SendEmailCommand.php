@@ -6,7 +6,7 @@ use trntv\bus\interfaces\SelfHandlingCommand;
 use yii\base\BaseObject;
 use yii\swiftmailer\Message;
 
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 
 /**
  * @author Eugene Terentev <eugene@terentev.net>

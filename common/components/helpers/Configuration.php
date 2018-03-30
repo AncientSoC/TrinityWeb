@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\installer\helpers\enums;
+namespace common\components\helpers;
 
 class Configuration
 {

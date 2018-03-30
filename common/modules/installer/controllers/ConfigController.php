@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 use common\modules\installer\helpers\Configuration;
-use common\modules\installer\helpers\enums\Configuration as Enum;
+use common\components\helpers\Configuration as Enum;
 use common\modules\installer\InstallerModule;
 use common\modules\installer\models\config\ConfigBasicForm;
 use common\modules\installer\models\config\RecaptchaForm;

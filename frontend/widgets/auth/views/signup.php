@@ -6,7 +6,6 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \frontend\modules\user\models\SignupForm */
 
-$this->title = Yii::t('frontend', 'Signup');
 Yii::$app->params['breadcrumbs'][] = $this->title;
 \yii\widgets\Pjax::begin(['id' => 'auth-signup']);
 ?>

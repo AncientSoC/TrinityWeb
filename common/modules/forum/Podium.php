@@ -2,7 +2,7 @@
 
 namespace common\modules\forum;
 
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 use common\modules\forum\log\DbTarget;
 use common\modules\forum\maintenance\Maintenance;
 use common\modules\forum\models\Activity;

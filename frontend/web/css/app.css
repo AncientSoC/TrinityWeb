@@ -307,8 +307,6 @@ select:-webkit-autofill, select:hover:-webkit-autofill, select:active:-webkit-au
     margin-bottom: 7px;
     padding: 0px 10px 5px;
 }
-
-
 @media (min-width: 992px) {
     #header-nav ul.nav > li > a:before {
         position: absolute;

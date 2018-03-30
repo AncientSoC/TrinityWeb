@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 use vova07\console\ConsoleRunner;
 
 use common\modules\installer\helpers\Configuration;
-use common\modules\installer\helpers\enums\Configuration as Enum;
+use common\components\helpers\Configuration as Enum;
 use common\modules\installer\helpers\SystemCheck;
 use common\modules\installer\InstallerModule;
 

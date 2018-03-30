@@ -12,7 +12,7 @@ use yii\base\BootstrapInterface;
 use common\models\UserToken;
 
 use common\modules\installer\helpers\Configuration;
-use common\modules\installer\helpers\enums\Configuration as Enum;
+use common\components\helpers\Configuration as Enum;
 
 class InstallerModule extends BaseModule implements BootstrapInterface
 {

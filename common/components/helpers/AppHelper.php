@@ -530,6 +530,15 @@ class AppHelper extends \yii\base\Component
         }
     }
     
+    public static function buildTitle($title = null) {
+        $result_title = Yii::$app->name;
+        //check title exist and default framework title
+        if($title != null && mb_strtolower($title) != mb_strtolower('My Application')) {
+            $result_title .= ' | ' . $title;
+        }
+        return $result_title;
+    }
+    
     public static function getLangs() {
         if(Yii::$app->getModule('install')::isDbInstalled()) {
             $langs = Yii::$app->cache->get('langs');

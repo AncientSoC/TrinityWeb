@@ -8,7 +8,7 @@ use common\modules\forum\db\UserQuery;
 use common\modules\forum\Podium;
 use common\modules\forum\PodiumConfig;
 use common\modules\forum\rbac\Rbac;
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 use Exception;
 use Yii;
 use yii\helpers\Html;

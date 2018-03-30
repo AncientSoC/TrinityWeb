@@ -1,7 +1,7 @@
 <?php
 namespace common\modules\installer\controllers;
 
-use common\modules\installer\helpers\enums\Configuration as Enum;
+use common\components\helpers\Configuration as Enum;
 use Yii;
 use yii\web\Controller;
 use yii\web\ErrorAction;

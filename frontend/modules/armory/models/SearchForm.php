@@ -5,7 +5,7 @@ namespace frontend\modules\armory\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 use common\models\chars\Characters;
 
 /**

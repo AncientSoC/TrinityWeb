@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 ?>
 <div id="ladder-team-container">
     <table class="flat table table-dark">

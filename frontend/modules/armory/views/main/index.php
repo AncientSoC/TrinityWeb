@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\data\Pagination;
 use yii\widgets\LinkPager;
 use yii\bootstrap\ActiveForm;
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 use frontend\modules\armory\models\SearchForm;
 
 if($counter) {

@@ -6,11 +6,13 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 
+use common\components\helpers\Configuration;
 use frontend\widgets\auth\AuthWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+Yii::$app->name = Yii::$app->keyStorage->get(Configuration::APP_NAME);
 $this->beginContent('@frontend/views/layouts/_clear.php')
 ?>
 <div id="wrap">

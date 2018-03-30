@@ -118,7 +118,7 @@ class CharactersDbHelper extends \yii\base\Component
     */
     public function getServerNameById($server_id) {
         $data = $this::getServers(true);
-        return $data[$server_id] ? $data[$server_id] : null;
+        return isset($data[$server_id]) ? $data[$server_id] : null;
     }
     /**
     * Получить список серверов

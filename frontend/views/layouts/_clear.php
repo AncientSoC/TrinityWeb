@@ -14,7 +14,7 @@ use yii\helpers\Html;
 <head>
     <meta charset="<?php echo Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo Html::encode($this->title) ?></title>
+    <title><?=Yii::$app->AppHelper->buildTitle($this->title)?></title>
     <meta name="robots" content="noindex,follow" />
     <meta property="og:url" content="https:/" />
     

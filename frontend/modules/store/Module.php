@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\base\BootstrapInterface;
 use yii\web\GroupUrlRule;
-use common\modules\installer\helpers\enums\Configuration;
+use common\components\helpers\Configuration;
 use common\models\shop\ShopCategory;
 
 class Module extends \yii\base\Module implements BootstrapInterface
